@@ -50,6 +50,7 @@ while i < 6:
             counter = counter + 1
         else:            
             print(f'All Done!  Here is a list of the topics you got right: {Correct}, and wrong: {Incorrect}')
+            counter =  1
     elif action == 'create': 
         f_card = input('Type the specific term the card will be about Ex. React or Data Structures\n')
         b_card = input('Type the description of the term Ex. "MongoDb is a Database"\n')
