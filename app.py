@@ -28,6 +28,9 @@ class flashcards(BaseModel):
 # This counter variable is to keep track of the card id
 counter = 1
 i = 5
+Incorrect =[]
+Correct =[]
+
 while i < 6:
     action = input('What would you like to do? (create, study, quit)\n')
 
@@ -39,11 +42,14 @@ while i < 6:
             answer = input(f'{getFlashcard.front}\n')
             
             if answer == getFlashcard.back:
-                print('Correct')
+                print('You got it!')
+                Correct += {getFlashcard.front}
             else: 
                 print(f'Incorrect, the answer is: {getFlashcard.back}')
-
+                Incorrect += {getFlashcard.front}
             counter = counter + 1
+        else:            
+            print(f'All Done!  Here is a list of the topics you got right: {Correct}, and wrong: {Incorrect}')
     elif action == 'create': 
         f_card = input('Type the specific term the card will be about Ex. React or Data Structures\n')
         b_card = input('Type the description of the term Ex. "MongoDb is a Database"\n')
@@ -51,6 +57,8 @@ while i < 6:
         new_card.save()
     elif action == 'quit':
         i = 7
+else:
+    print("Quitting already? this is why your mother doesn't love you!")
 
 
 
