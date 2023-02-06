@@ -32,7 +32,7 @@ Incorrect =[]
 Correct =[]
 
 while i < 6:
-    action = input('What would you like to do? (create, study, quit)\n')
+    action = input('What would you like to do? (create, study, update, delete, quit)\n')
 
     if action == 'study':
         how_many = int(input('How many cards would you like to study?\n'))
@@ -56,6 +56,19 @@ while i < 6:
         b_card = input('Type the description of the term Ex. "MongoDb is a Database"\n')
         new_card = flashcards(front= f_card, back= b_card)
         new_card.save()
+    elif action == 'update':
+        choice = input('Which topic would you like to update?\n')
+        new_stuff = input('Write your changes\n')
+        edit = (flashcards
+        .update({flashcards.back: new_stuff})
+        .where(flashcards.front == choice))
+        edit.execute()
+        print('Nice! the topic has been updated.')
+    elif action == 'delete':
+        choice = input('Which topic would you like to delete?\n')
+        destroy= flashcards.delete().where(flashcards.front == choice)
+        destroy.execute()
+        print(f'The {choice} topic has been DESTROYED :( ')
     elif action == 'quit':
         i = 7
 else:
